@@ -193,6 +193,10 @@ public class ProfilerDataCollector
     			LifetimeWeakReference ref = (LifetimeWeakReference) objectCollectedQueue.remove(REMOVE_WAIT_TIME);
 
     			if (ref != null) {
+    				
+    				// The referee has been garbage collected, update ref set
+    				weakRefSet.remove(ref);
+
     				String className = ref.className;
     				long size = ref.size;
     				Trace trace = ref.trace;
